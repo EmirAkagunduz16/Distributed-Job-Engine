@@ -61,6 +61,34 @@
         }
       }
     },
+    "prisma-generate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx prisma generate --schema=./prisma/schema.prisma --config=./prisma/prisma.config.ts",
+        "cwd": "apps/jobber-auth"
+      }
+    },
+    "prisma-migrate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx prisma migrate dev --schema=./prisma/schema.prisma --config=./prisma/prisma.config.ts",
+        "cwd": "apps/jobber-auth"
+      }
+    },
+    "prisma-migrate-deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx prisma migrate deploy --schema=./prisma/schema.prisma --config=./prisma/prisma.config.ts",
+        "cwd": "apps/jobber-auth"
+      }
+    },
+    "prisma-studio": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx prisma studio --schema=./prisma/schema.prisma --config=./prisma/prisma.config.ts",
+        "cwd": "apps/jobber-auth"
+      }
+    },
     "test": {
       "options": {
         "passWithNoTests": true
