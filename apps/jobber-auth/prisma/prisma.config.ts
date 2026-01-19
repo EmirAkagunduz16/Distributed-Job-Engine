@@ -12,6 +12,6 @@ export default defineConfig({
     path: path.join(__dirname, 'migrations'),
   },
   datasource: {
-    url: env('AUTH_DATABASE_URL'),
+    url: env('DATABASE_URL'),
   },
 });
