@@ -64,6 +64,12 @@
     },
     "prisma-generate": {
       "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": [
+        "{projectRoot}/prisma/schema.prisma",
+        "{projectRoot}/prisma/prisma.config.ts"
+      ],
+      "outputs": ["{projectRoot}/generated"],
       "options": {
         "command": "npx prisma generate --schema=./prisma/schema.prisma --config=./prisma/prisma.config.ts",
         "cwd": "apps/jobber-auth"
@@ -86,7 +92,7 @@
     "prisma-studio": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npx prisma studio --schema=./prisma/schema.prisma --config=./prisma/prisma.config.ts",
+        "command": "npx prisma studio --config=./prisma/prisma.config.ts",
         "cwd": "apps/jobber-auth"
       }
     },

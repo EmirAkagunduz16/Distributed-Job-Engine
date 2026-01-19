@@ -9,6 +9,9 @@ module.exports = {
       devtoolModuleFilenameTemplate: '[absolute-resource-path]',
     }),
   },
+  watchOptions: {
+    ignored: ['**/generated/**', '**/node_modules/**'],
+  },
   plugins: [
     new NxAppWebpackPlugin({
       target: 'node',
