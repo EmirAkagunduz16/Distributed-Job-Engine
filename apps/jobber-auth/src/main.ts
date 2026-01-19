@@ -9,8 +9,8 @@ import { AppModule } from './app/app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const globalPrefix = 'api';
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true }))
+  const globalPrefix = process.env.GLOBAL_PREFIX || 'api';
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3000;
   await app.listen(port);
