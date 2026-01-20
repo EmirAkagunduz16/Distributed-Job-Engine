@@ -17,7 +17,7 @@
           "args": ["--node-env=development"]
         }
       },
-      "dependsOn": ["prisma-generate"]
+      "dependsOn": ["prisma-generate", "generate-ts-proto"]
     },
     "prune-lockfile": {
       "dependsOn": ["build"],
@@ -72,28 +72,28 @@
       "outputs": ["{projectRoot}/generated"],
       "options": {
         "command": "npx prisma generate --schema=./prisma/schema.prisma --config=./prisma/prisma.config.ts",
-        "cwd": "apps/jobber-auth"
+        "cwd": "{projectRoot}"
       }
     },
     "prisma-migrate": {
       "executor": "nx:run-commands",
       "options": {
         "command": "npx prisma migrate dev --schema=./prisma/schema.prisma --config=./prisma/prisma.config.ts",
-        "cwd": "apps/jobber-auth"
+        "cwd": "{projectRoot}"
       }
     },
     "prisma-migrate-deploy": {
       "executor": "nx:run-commands",
       "options": {
         "command": "npx prisma migrate deploy --schema=./prisma/schema.prisma --config=./prisma/prisma.config.ts",
-        "cwd": "apps/jobber-auth"
+        "cwd": "{projectRoot}"
       }
     },
     "prisma-studio": {
       "executor": "nx:run-commands",
       "options": {
         "command": "npx prisma studio --config=./prisma/prisma.config.ts",
-        "cwd": "apps/jobber-auth"
+        "cwd": "{projectRoot}"
       }
     },
     "test": {
@@ -101,6 +101,9 @@
       "options": {
         "passWithNoTests": true
       }
+    },
+    "generate-ts-proto": {
+      "command": "nx generate-ts-proto"
     }
   }
 }
