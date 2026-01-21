@@ -3,14 +3,14 @@ services:
     image: postgres
     ports:
       - 5433:5432
-    environment: 
+    environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: emir0416
       POSTGRES_DB: jobber-auth
 
     volumes:
       - postgres_data:/var/lib/postgresql/data
-  
+
   pulsar:
     image: apachepulsar/pulsar:latest
     command: >
