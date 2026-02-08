@@ -6,7 +6,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: emir0416
-      POSTGRES_DB: jobber-auth
+      POSTGRES_DB: auth
 
     volumes:
       - postgres_data:/var/lib/postgresql/data

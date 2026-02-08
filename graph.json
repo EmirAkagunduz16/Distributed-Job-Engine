@@ -1,23 +1,23 @@
 {
   "graph": {
     "nodes": {
-      "jobber-auth-e2e": {
-        "name": "jobber-auth-e2e",
+      "auth-e2e": {
+        "name": "auth-e2e",
         "type": "e2e",
         "data": {
-          "root": "apps/jobber-auth-e2e",
+          "root": "apps/auth-e2e",
           "targets": {
             "lint": {
               "cache": true,
               "options": {
-                "cwd": "apps/jobber-auth-e2e",
+                "cwd": "apps/auth-e2e",
                 "command": "eslint ."
               },
               "inputs": [
                 "default",
                 "^default",
                 "{workspaceRoot}/eslint.config.mjs",
-                "{workspaceRoot}/apps/jobber-auth-e2e/eslint.config.mjs",
+                "{workspaceRoot}/apps/auth-e2e/eslint.config.mjs",
                 "{workspaceRoot}/tools/eslint-rules/**/*",
                 {
                   "externalDependencies": ["eslint"]
@@ -44,31 +44,31 @@
               "executor": "@nx/jest:jest",
               "outputs": ["{workspaceRoot}/coverage/{e2eProjectRoot}"],
               "options": {
-                "jestConfig": "apps/jobber-auth-e2e/jest.config.cts",
+                "jestConfig": "apps/auth-e2e/jest.config.cts",
                 "passWithNoTests": true
               },
-              "dependsOn": ["jobber-auth:build", "jobber-auth:serve"],
+              "dependsOn": ["auth:build", "auth:serve"],
               "configurations": {},
               "parallelism": true
             }
           },
-          "name": "jobber-auth-e2e",
+          "name": "auth-e2e",
           "$schema": "../../node_modules/nx/schemas/project-schema.json",
           "projectType": "application",
-          "implicitDependencies": ["jobber-auth"],
+          "implicitDependencies": ["auth"],
           "tags": []
         }
       },
-      "jobber-jobs-e2e": {
-        "name": "jobber-jobs-e2e",
+      "jobs-e2e": {
+        "name": "jobs-e2e",
         "type": "e2e",
         "data": {
-          "root": "apps/jobber-jobs-e2e",
+          "root": "apps/jobs-e2e",
           "targets": {
             "lint": {
               "cache": true,
               "options": {
-                "cwd": "apps/jobber-jobs-e2e",
+                "cwd": "apps/jobs-e2e",
                 "command": "eslint ."
               },
               "inputs": [
@@ -101,26 +101,26 @@
               "executor": "@nx/jest:jest",
               "outputs": ["{workspaceRoot}/coverage/{e2eProjectRoot}"],
               "options": {
-                "jestConfig": "apps/jobber-jobs-e2e/jest.config.cts",
+                "jestConfig": "apps/jobs-e2e/jest.config.cts",
                 "passWithNoTests": true
               },
-              "dependsOn": ["jobber-jobs:build", "jobber-jobs:serve"],
+              "dependsOn": ["jobs:build", "jobs:serve"],
               "configurations": {},
               "parallelism": true
             }
           },
-          "name": "jobber-jobs-e2e",
+          "name": "jobs-e2e",
           "$schema": "../../node_modules/nx/schemas/project-schema.json",
           "projectType": "application",
-          "implicitDependencies": ["jobber-jobs"],
+          "implicitDependencies": ["jobs"],
           "tags": []
         }
       },
-      "jobber-auth": {
-        "name": "jobber-auth",
+      "auth": {
+        "name": "auth",
         "type": "app",
         "data": {
-          "root": "apps/jobber-auth",
+          "root": "apps/auth",
           "projectType": "application",
           "metadata": {},
           "targets": {
@@ -134,7 +134,7 @@
                   "externalDependencies": ["webpack-cli"]
                 }
               ],
-              "outputs": ["{workspaceRoot}/dist/apps/jobber-auth"],
+              "outputs": ["{workspaceRoot}/dist/apps/auth"],
               "metadata": {
                 "technologies": ["webpack"],
                 "description": "Runs Webpack build",
@@ -150,7 +150,7 @@
               },
               "executor": "nx:run-commands",
               "options": {
-                "cwd": "apps/jobber-auth",
+                "cwd": "apps/auth",
                 "args": ["--node-env=production"],
                 "command": "webpack-cli build"
               },
@@ -167,15 +167,15 @@
               "defaultConfiguration": "development",
               "dependsOn": ["build"],
               "options": {
-                "buildTarget": "jobber-auth:build",
+                "buildTarget": "auth:build",
                 "runBuildTargetDependencies": true
               },
               "configurations": {
                 "development": {
-                  "buildTarget": "jobber-auth:build:development"
+                  "buildTarget": "auth:build:development"
                 },
                 "production": {
-                  "buildTarget": "jobber-auth:build:production"
+                  "buildTarget": "auth:build:production"
                 }
               },
               "parallelism": true
@@ -183,7 +183,7 @@
             "preview": {
               "continuous": true,
               "options": {
-                "cwd": "apps/jobber-auth",
+                "cwd": "apps/auth",
                 "args": ["--node-env=production"],
                 "command": "webpack-cli serve"
               },
@@ -226,7 +226,7 @@
               "dependsOn": ["build-deps"],
               "executor": "nx:run-commands",
               "options": {
-                "command": "npx nx watch --projects jobber-auth --includeDependentProjects -- npx nx build-deps jobber-auth"
+                "command": "npx nx watch --projects auth --includeDependentProjects -- npx nx build-deps auth"
               },
               "configurations": {},
               "parallelism": true
@@ -234,14 +234,14 @@
             "lint": {
               "cache": true,
               "options": {
-                "cwd": "apps/jobber-auth",
+                "cwd": "apps/auth",
                 "command": "eslint ."
               },
               "inputs": [
                 "default",
                 "^default",
                 "{workspaceRoot}/eslint.config.mjs",
-                "{workspaceRoot}/apps/jobber-auth/eslint.config.mjs",
+                "{workspaceRoot}/apps/auth/eslint.config.mjs",
                 "{workspaceRoot}/tools/eslint-rules/**/*",
                 {
                   "externalDependencies": ["eslint"]
@@ -286,11 +286,11 @@
                   "externalDependencies": ["jest"]
                 }
               ],
-              "outputs": ["{workspaceRoot}/coverage/apps/jobber-auth"],
+              "outputs": ["{workspaceRoot}/coverage/apps/auth"],
               "executor": "nx:run-commands",
               "dependsOn": ["prisma-generate"],
               "options": {
-                "cwd": "apps/jobber-auth",
+                "cwd": "apps/auth",
                 "env": {
                   "TS_NODE_COMPILER_OPTIONS": "{\"moduleResolution\":\"node10\",\"module\":\"commonjs\",\"customConditions\":null}"
                 },
@@ -305,8 +305,8 @@
               "cache": true,
               "executor": "@nx/js:prune-lockfile",
               "outputs": [
-                "{workspaceRoot}/dist/apps/jobber-auth/package.json",
-                "{workspaceRoot}/dist/apps/jobber-auth/package-lock.json"
+                "{workspaceRoot}/dist/apps/auth/package.json",
+                "{workspaceRoot}/dist/apps/auth/package-lock.json"
               ],
               "options": {
                 "buildTarget": "build"
@@ -317,9 +317,7 @@
             "copy-workspace-modules": {
               "dependsOn": ["build"],
               "cache": true,
-              "outputs": [
-                "{workspaceRoot}/dist/apps/jobber-auth/workspace_modules"
-              ],
+              "outputs": ["{workspaceRoot}/dist/apps/auth/workspace_modules"],
               "executor": "@nx/js:copy-workspace-modules",
               "options": {
                 "buildTarget": "build"
@@ -344,7 +342,7 @@
               "outputs": ["{projectRoot}/generated"],
               "options": {
                 "command": "npx prisma generate --schema=./prisma/schema.prisma --config=./prisma/prisma.config.ts",
-                "cwd": "apps/jobber-auth"
+                "cwd": "apps/auth"
               },
               "configurations": {},
               "parallelism": true
@@ -353,7 +351,7 @@
               "executor": "nx:run-commands",
               "options": {
                 "command": "npx prisma migrate dev --schema=./prisma/schema.prisma --config=./prisma/prisma.config.ts",
-                "cwd": "apps/jobber-auth"
+                "cwd": "apps/auth"
               },
               "configurations": {},
               "parallelism": true
@@ -362,7 +360,7 @@
               "executor": "nx:run-commands",
               "options": {
                 "command": "npx prisma migrate deploy --schema=./prisma/schema.prisma --config=./prisma/prisma.config.ts",
-                "cwd": "apps/jobber-auth"
+                "cwd": "apps/auth"
               },
               "configurations": {},
               "parallelism": true
@@ -371,7 +369,7 @@
               "executor": "nx:run-commands",
               "options": {
                 "command": "npx prisma studio --config=./prisma/prisma.config.ts",
-                "cwd": "apps/jobber-auth"
+                "cwd": "apps/auth"
               },
               "configurations": {},
               "parallelism": true
@@ -385,18 +383,18 @@
               "parallelism": true
             }
           },
-          "name": "jobber-auth",
+          "name": "auth",
           "$schema": "../../node_modules/nx/schemas/project-schema.json",
-          "sourceRoot": "apps/jobber-auth/src",
+          "sourceRoot": "apps/auth/src",
           "tags": [],
           "implicitDependencies": []
         }
       },
-      "jobber-jobs": {
-        "name": "jobber-jobs",
+      "jobs": {
+        "name": "jobs",
         "type": "app",
         "data": {
-          "root": "apps/jobber-jobs",
+          "root": "apps/jobs",
           "projectType": "application",
           "metadata": {},
           "targets": {
@@ -410,7 +408,7 @@
                   "externalDependencies": ["webpack-cli"]
                 }
               ],
-              "outputs": ["{workspaceRoot}/dist/apps/jobber-jobs"],
+              "outputs": ["{workspaceRoot}/dist/apps/jobs"],
               "metadata": {
                 "technologies": ["webpack"],
                 "description": "Runs Webpack build",
@@ -426,7 +424,7 @@
               },
               "executor": "nx:run-commands",
               "options": {
-                "cwd": "apps/jobber-jobs",
+                "cwd": "apps/jobs",
                 "args": ["--node-env=production"],
                 "command": "webpack-cli build"
               },
@@ -443,15 +441,15 @@
               "defaultConfiguration": "development",
               "dependsOn": ["build"],
               "options": {
-                "buildTarget": "jobber-jobs:build",
+                "buildTarget": "jobs:build",
                 "runBuildTargetDependencies": false
               },
               "configurations": {
                 "development": {
-                  "buildTarget": "jobber-jobs:build:development"
+                  "buildTarget": "jobs:build:development"
                 },
                 "production": {
-                  "buildTarget": "jobber-jobs:build:production"
+                  "buildTarget": "jobs:build:production"
                 }
               },
               "parallelism": true
@@ -459,7 +457,7 @@
             "preview": {
               "continuous": true,
               "options": {
-                "cwd": "apps/jobber-jobs",
+                "cwd": "apps/jobs",
                 "args": ["--node-env=production"],
                 "command": "webpack-cli serve"
               },
@@ -502,7 +500,7 @@
               "dependsOn": ["build-deps"],
               "executor": "nx:run-commands",
               "options": {
-                "command": "npx nx watch --projects jobber-jobs --includeDependentProjects -- npx nx build-deps jobber-jobs"
+                "command": "npx nx watch --projects jobs --includeDependentProjects -- npx nx build-deps jobs"
               },
               "configurations": {},
               "parallelism": true
@@ -510,7 +508,7 @@
             "lint": {
               "cache": true,
               "options": {
-                "cwd": "apps/jobber-jobs",
+                "cwd": "apps/jobs",
                 "command": "eslint ."
               },
               "inputs": [
@@ -544,8 +542,8 @@
               "cache": true,
               "executor": "@nx/js:prune-lockfile",
               "outputs": [
-                "{workspaceRoot}/dist/apps/jobber-jobs/package.json",
-                "{workspaceRoot}/dist/apps/jobber-jobs/package-lock.json"
+                "{workspaceRoot}/dist/apps/jobs/package.json",
+                "{workspaceRoot}/dist/apps/jobs/package-lock.json"
               ],
               "options": {
                 "buildTarget": "build"
@@ -556,9 +554,7 @@
             "copy-workspace-modules": {
               "dependsOn": ["build"],
               "cache": true,
-              "outputs": [
-                "{workspaceRoot}/dist/apps/jobber-jobs/workspace_modules"
-              ],
+              "outputs": ["{workspaceRoot}/dist/apps/jobs/workspace_modules"],
               "executor": "@nx/js:copy-workspace-modules",
               "options": {
                 "buildTarget": "build"
@@ -574,9 +570,9 @@
               "parallelism": true
             }
           },
-          "name": "jobber-jobs",
+          "name": "jobs",
           "$schema": "../../node_modules/nx/schemas/project-schema.json",
-          "sourceRoot": "apps/jobber-jobs/src",
+          "sourceRoot": "apps/jobs/src",
           "tags": [],
           "implicitDependencies": []
         }
@@ -725,33 +721,33 @@
       }
     },
     "dependencies": {
-      "jobber-auth-e2e": [
+      "auth-e2e": [
         {
-          "source": "jobber-auth-e2e",
-          "target": "jobber-auth",
+          "source": "auth-e2e",
+          "target": "auth",
           "type": "implicit"
         }
       ],
-      "jobber-jobs-e2e": [
+      "jobs-e2e": [
         {
-          "source": "jobber-jobs-e2e",
-          "target": "jobber-jobs",
+          "source": "jobs-e2e",
+          "target": "jobs",
           "type": "implicit"
         }
       ],
-      "jobber-auth": [
+      "auth": [
         {
-          "source": "jobber-auth",
+          "source": "auth",
           "target": "nestjs",
           "type": "static"
         },
         {
-          "source": "jobber-auth",
+          "source": "auth",
           "target": "types",
           "type": "static"
         }
       ],
-      "jobber-jobs": [],
+      "jobs": [],
       "nestjs": [],
       "types": [],
       "@jobber/source": []
