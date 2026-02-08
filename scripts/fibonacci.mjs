@@ -50,7 +50,7 @@ async function executeJobWithInput(executeJobInput, cookies) {
 (async () => {
   const { data: loginData, cookies } = await login(
     'new_emir@gmail.com',
-    'Password123!'
+    'Password123!',
   );
   if (loginData?.data.login.id) {
     const n = parseInt(process.argv[4], 10) || 1000;
