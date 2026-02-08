@@ -3,7 +3,13 @@ import { JobsModule } from './jobs/jobs.module';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [JobsModule, ConfigModule.forRoot({ isGlobal: true })],
+  imports: [
+    JobsModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: ['.env', 'apps/executor/.env'],
+    }),
+  ],
   controllers: [],
   providers: [],
 })
