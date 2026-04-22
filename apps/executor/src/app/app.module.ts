@@ -1,13 +1,15 @@
-import { Module } from '@nestjs/common';
-import { JobsModule } from './jobs/jobs.module';
-import { ConfigModule } from '@nestjs/config';
+import { Module } from "@nestjs/common";
+import { JobsModule } from "./jobs/jobs.module";
+import { ConfigModule } from "@nestjs/config";
+import { LoggerModule } from "@jobber/nestjs";
 
 @Module({
   imports: [
+    LoggerModule,
     JobsModule,
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: ['.env', 'apps/executor/.env'],
+      envFilePath: [".env", "apps/executor/.env"],
     }),
   ],
   controllers: [],
