@@ -5,6 +5,7 @@ WORKDIR /workspace
 COPY package*.json ./
 COPY nx.json ./
 COPY tsconfig*.json ./
+COPY webpack.*.config.js ./
 
 COPY apps/executor ./apps/executor
 COPY libs/pulsar ./libs/pulsar
