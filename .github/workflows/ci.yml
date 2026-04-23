@@ -13,6 +13,10 @@ permissions:
 jobs:
   main:
     runs-on: ubuntu-latest
+    env:
+      # prisma generate reads the schema only — no real DB connection is made.
+      # A placeholder URL is enough to satisfy the prisma.config.ts env() call.
+      DATABASE_URL: postgresql://placeholder:placeholder@localhost:5432/placeholder
     steps:
       - uses: actions/checkout@v4
         with:
