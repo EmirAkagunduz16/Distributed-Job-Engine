@@ -40,6 +40,8 @@ postgresql:
     username: postgres
     password: postgres
     database: jobber
+  image:
+    tag: "17.6.0"
 
 jobs:
   enabled: true
