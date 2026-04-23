@@ -41,7 +41,8 @@ postgresql:
     password: postgres
     database: jobber
   image:
-    tag: "17.6.0"
+    tag: "latest"
+
 
 jobs:
   enabled: true
