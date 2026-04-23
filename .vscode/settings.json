@@ -1,5 +1,10 @@
 {
   "prisma-smart-formatter.typescript.defaultFormatter": "esbenp.prettier-vscode",
   "prisma-smart-formatter.typescriptreact.defaultFormatter": "esbenp.prettier-vscode",
-  "prisma-smart-formatter.prisma.defaultFormatter": "Prisma.prisma"
+  "prisma-smart-formatter.prisma.defaultFormatter": "Prisma.prisma",
+  "files.associations": {
+    "**/charts/**/templates/**/*.yaml": "helm",
+    "**/charts/**/templates/**/*.yml": "helm",
+    "**/charts/**/templates/**/*.tpl": "helm"
+  }
 }
