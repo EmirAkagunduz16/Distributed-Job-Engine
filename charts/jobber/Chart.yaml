@@ -27,5 +27,5 @@ dependencies:
     version: 3.7.0
     repository: https://pulsar.apache.org/charts
   - name: postgresql
-    version: 17.1.0
+    version: "^16.2.1"
     repository: https://charts.bitnami.com/bitnami
