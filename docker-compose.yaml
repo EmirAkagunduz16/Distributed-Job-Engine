@@ -14,7 +14,10 @@ services:
   pulsar:
     image: apachepulsar/pulsar:latest
     command: >
-      /pulsar/bin/pulsar standalone
+      sh -c "python3 /pulsar/bin/apply-config-from-env.py /pulsar/conf/standalone.conf &&
+             /pulsar/bin/pulsar standalone"
+    environment:
+      - PULSAR_PREFIX_advertisedAddress=localhost
     ports:
       - 6650:6650
 
