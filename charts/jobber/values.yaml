@@ -33,6 +33,8 @@ pulsar:
       enabled: false
     prometheus:
       enabled: false
+  components:
+    pulsar_metadata: true
 
 postgresql:
   namespaceOverride: postgresql
