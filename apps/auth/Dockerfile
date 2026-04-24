@@ -47,7 +47,7 @@ COPY --from=builder /workspace/dist ./dist
 
 COPY --from=builder /workspace/apps/auth/generated ./apps/auth/generated
 
-COPY apps/auth/docker-entrypoint.sh ./app/docker-entrypoint.sh
+COPY apps/auth/docker-entrypoint.sh ./docker-entrypoint.sh
 RUN chmod +x /app/docker-entrypoint.sh
 
 ENTRYPOINT ["/app/docker-entrypoint.sh"]
