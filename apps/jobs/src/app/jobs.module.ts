@@ -7,19 +7,24 @@ import { join } from 'path';
 import { PulsarModule } from '@jobber/pulsar';
 import { FibonacciJob } from './jobs/fibonacci/fibonacci.job';
 import { JobsResolver } from './jobs.resolver';
+import { ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
     DiscoveryModule,
     PulsarModule,
-    ClientsModule.register([
+    ClientsModule.registerAsync([
       {
         name: AUTH_PACKAGE_NAME,
-        transport: Transport.GRPC,
-        options: {
-          package: AUTH_PACKAGE_NAME,
-          protoPath: join(__dirname, '../../libs/grpc/proto/auth.proto'),
-        },
+        useFactory: (configService: ConfigService) => ({
+          transport: Transport.GRPC,
+          options: {
+            url: configService.getOrThrow('AUTH_SERVICE_GRPC_URL'),
+            package: AUTH_PACKAGE_NAME,
+            protoPath: join(__dirname, '../../libs/grpc/proto/auth.proto'),
+          },
+        }),
+        inject: [ConfigService],
       },
     ]),
   ],
