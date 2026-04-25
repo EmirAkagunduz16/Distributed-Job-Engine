@@ -12,6 +12,7 @@ import { GqlLoggingPlugin } from "@jobber/graphql";
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: [".env", "apps/jobs/.env"],
+      ignoreEnvFile: process.env.NODE_ENV === 'production',
     }),
     JobsModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
