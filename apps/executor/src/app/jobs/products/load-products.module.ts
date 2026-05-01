@@ -5,6 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { PACKAGES } from '@jobber/grpc';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { join } from 'path';
+import { JobClientsModule } from '../job-clients.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { join } from 'path';
       },
     ]),
     PulsarModule,
+    JobClientsModule,
   ],
   providers: [LoadProductsConsumer],
 })
