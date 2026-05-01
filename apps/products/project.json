@@ -1,7 +1,7 @@
 {
   "name": "products",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "products/src",
+  "sourceRoot": "apps/products/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -9,7 +9,7 @@
       "options": {
         "command": "webpack-cli build",
         "args": ["--node-env=production"],
-        "cwd": "products"
+        "cwd": "apps/products"
       },
       "configurations": {
         "development": {

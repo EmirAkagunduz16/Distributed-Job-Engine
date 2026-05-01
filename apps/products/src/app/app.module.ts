@@ -1,8 +1,19 @@
 import { Module } from '@nestjs/common';
 import { LoggerModule } from '@jobber/nestjs';
+import { ConfigModule } from '@nestjs/config';
+import { DatabaseModule } from './database/database.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
-  imports: [LoggerModule],
+  imports: [
+    LoggerModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: ['.env', 'apps/jobs/.env'],
+    }),
+    DatabaseModule,
+    ProductsModule,
+  ],
   controllers: [],
   providers: [],
 })
