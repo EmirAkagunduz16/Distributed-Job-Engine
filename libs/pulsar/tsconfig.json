@@ -7,8 +7,11 @@
     "importHelpers": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
+    "strictPropertyInitialization": false,
     "noFallthroughCasesInSwitch": true,
-    "noPropertyAccessFromIndexSignature": true
+    "noPropertyAccessFromIndexSignature": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
   },
   "files": [],
   "include": [],

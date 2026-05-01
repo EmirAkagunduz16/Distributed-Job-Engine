@@ -15,7 +15,8 @@
         "development": {
           "args": ["--node-env=development"]
         }
-      }
+      },
+      "dependsOn": ["^build"]
     },
     "prune-lockfile": {
       "dependsOn": ["build"],
@@ -49,7 +50,7 @@
       "dependsOn": ["build"],
       "options": {
         "buildTarget": "products:build",
-        "runBuildTargetDependencies": false
+        "runBuildTargetDependencies": true
       },
       "configurations": {
         "development": {

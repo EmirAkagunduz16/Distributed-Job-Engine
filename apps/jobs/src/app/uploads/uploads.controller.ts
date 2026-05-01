@@ -35,6 +35,11 @@ export class UploadsController {
     }),
   )
   uploadFile(@UploadedFile() file: Express.Multer.File) {
+    if (!file) {
+      throw new BadRequestException(
+        'No file received. Send multipart/form-data with field name "file" and a JSON attachment.',
+      );
+    }
     return { message: 'File uploaded successfully', filename: file.filename };
   }
 }
