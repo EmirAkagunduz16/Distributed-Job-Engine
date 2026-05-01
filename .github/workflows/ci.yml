@@ -29,6 +29,9 @@ jobs:
 
       - name: Setup protoc
         uses: arduino/setup-protoc@v3.0.0
+        with:
+          # Avoid GitHub API rate limits when resolving protoc releases (unauthenticated runs share a low quota).
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - run: npm ci --legacy-peer-deps
       - uses: nrwl/nx-set-shas@v4
