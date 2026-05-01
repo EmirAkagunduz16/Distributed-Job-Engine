@@ -5,20 +5,27 @@
   "projectType": "application",
   "targets": {
     "build": {
+      "dependsOn": ["prisma-generate", "^build"],
       "executor": "nx:run-commands",
       "options": {
         "command": "webpack-cli build",
-        "args": ["--node-env=production"],
+        "args": [
+          "--node-env=production"
+        ],
         "cwd": "apps/jobs"
       },
       "configurations": {
         "development": {
-          "args": ["--node-env=development"]
+          "args": [
+            "--node-env=development"
+          ]
         }
       }
     },
     "prune-lockfile": {
-      "dependsOn": ["build"],
+      "dependsOn": [
+        "build"
+      ],
       "cache": true,
       "executor": "@nx/js:prune-lockfile",
       "outputs": [
@@ -30,23 +37,32 @@
       }
     },
     "copy-workspace-modules": {
-      "dependsOn": ["build"],
+      "dependsOn": [
+        "build"
+      ],
       "cache": true,
-      "outputs": ["{workspaceRoot}/dist/apps/jobs/workspace_modules"],
+      "outputs": [
+        "{workspaceRoot}/dist/apps/jobs/workspace_modules"
+      ],
       "executor": "@nx/js:copy-workspace-modules",
       "options": {
         "buildTarget": "build"
       }
     },
     "prune": {
-      "dependsOn": ["prune-lockfile", "copy-workspace-modules"],
+      "dependsOn": [
+        "prune-lockfile",
+        "copy-workspace-modules"
+      ],
       "executor": "nx:noop"
     },
     "serve": {
       "continuous": true,
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
-      "dependsOn": ["build"],
+      "dependsOn": [
+        "build"
+      ],
       "options": {
         "buildTarget": "jobs:build",
         "runBuildTargetDependencies": false
@@ -58,6 +74,28 @@
         "production": {
           "buildTarget": "jobs:build:production"
         }
+      }
+    },
+    "prisma-generate": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": [
+        "{projectRoot}/prisma/schema.prisma",
+        "{projectRoot}/prisma/prisma.config.ts"
+      ],
+      "outputs": [
+        "{projectRoot}/generated"
+      ],
+      "options": {
+        "command": "npx prisma generate --schema=./prisma/schema.prisma --config=./prisma/prisma.config.ts",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "prisma-migrate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx prisma migrate dev --schema=./prisma/schema.prisma --config=./prisma/prisma.config.ts",
+        "cwd": "{projectRoot}"
       }
     }
   },

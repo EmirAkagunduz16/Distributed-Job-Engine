@@ -9,11 +9,13 @@ import { FibonacciJob } from './jobs/fibonacci/fibonacci.job';
 import { JobsResolver } from './jobs.resolver';
 import { ConfigService } from '@nestjs/config';
 import { LoadProductsJob } from './jobs/products/load-products.job';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
     DiscoveryModule,
     PulsarModule,
+    PrismaModule,
     ClientsModule.registerAsync([
       {
         name: PACKAGES.AUTH,
