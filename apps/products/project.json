@@ -59,6 +59,20 @@
           "buildTarget": "products:build:production"
         }
       }
+    },
+    "generate-drizzle": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "drizzle-kit generate",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "migrate-drizzle": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "drizzle-kit migrate",
+        "cwd": "{projectRoot}"
+      }
     }
   },
   "tags": []
