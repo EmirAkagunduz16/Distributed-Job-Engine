@@ -8,8 +8,6 @@
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
 
-export const protobufPackage = "products";
-
 export interface CreateProductRequest {
   name: string;
   category: string;
@@ -21,8 +19,6 @@ export interface CreateProductRequest {
 
 export interface CreateProductResponse {
 }
-
-export const PRODUCTS_PACKAGE_NAME = "products";
 
 export interface ProductsServiceClient {
   createProduct(request: CreateProductRequest): Observable<CreateProductResponse>;
