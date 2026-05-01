@@ -3,6 +3,7 @@ import { DATABASE_CONNECTION } from './database-connection';
 import { ConfigService } from '@nestjs/config';
 import { Pool } from 'pg';
 import { drizzle } from 'drizzle-orm/node-postgres';
+import * as categoriesSchema from '../categories/schema';
 import * as productsSchema from '../products/schema';
 
 @Global()
@@ -17,6 +18,7 @@ import * as productsSchema from '../products/schema';
         return drizzle(pool, {
           schema: {
             ...productsSchema,
+            ...categoriesSchema,
           },
         });
       },
