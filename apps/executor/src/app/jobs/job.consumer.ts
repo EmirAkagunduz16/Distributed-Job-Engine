@@ -10,7 +10,7 @@ import { firstValueFrom } from 'rxjs';
 export abstract class JobConsumer<
   T extends AcknowledgeRequest,
 > extends PulsarConsumer<T> {
-  private jobsService: JobServiceClient;
+  private jobsService!: JobServiceClient;
 
   constructor(
     topic: string,

@@ -7,7 +7,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { JobStatus } from '../models/job-status.enum';
 
 export abstract class AbstractJob<T extends object> {
-  private producer: Producer;
+  private producer!: Producer;
   protected abstract messageClass: new () => T;
 
   constructor(
