@@ -32,7 +32,7 @@ export class JobsService implements OnModuleInit {
       );
   }
 
-  getJobs() {
+  getJobMetadata() {
     return this.jobs.map((job) => job.meta);
   }
 
@@ -44,11 +44,20 @@ export class JobsService implements OnModuleInit {
     if (!(job.discoveredClass.instance instanceof AbstractJob)) {
       throw new InternalServerErrorException('Job is not properly configured');
     }
-    await job.discoveredClass.instance.execute(
+    return job.discoveredClass.instance.execute(
       data.fileName ? this.getFile(data.fileName) : data,
       job.meta.name,
     );
-    return job.meta;
+  }
+
+  async getJobs() {
+    return this.prismaService.job.findMany();
+  }
+
+  async getJob(jobId: number) {
+    return this.prismaService.job.findUnique({
+      where: { id: jobId },
+    });
   }
 
   async acknowledge(jobId: number) {
