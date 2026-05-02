@@ -10,7 +10,7 @@ import { PACKAGES } from '@jobber/grpc';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });
-  await init(app);
+  await init(app, 'auth');
   app.connectMicroservice<GrpcOptions>({
     transport: Transport.GRPC,
     options: {

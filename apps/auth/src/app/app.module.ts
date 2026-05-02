@@ -1,25 +1,26 @@
-import { Module } from "@nestjs/common";
-import { PrismaModule } from "./prisma/prisma.module";
-import { GraphQLModule } from "@nestjs/graphql";
-import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
-import { UsersModule } from "./users/users.module";
-import { ConfigModule } from "@nestjs/config";
-import { AuthModule } from "./auth/auth.module";
-import { LoggerModule } from "@jobber/nestjs";
+import { Module } from '@nestjs/common';
+import { PrismaModule } from './prisma/prisma.module';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { UsersModule } from './users/users.module';
+import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
+import { LoggerModule } from '@jobber/nestjs';
 
 @Module({
   imports: [
     LoggerModule,
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: [".env", "apps/auth/.env"],
+      envFilePath: ['.env', 'apps/auth/.env'],
     }),
     PrismaModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
+      useGlobalPrefix: true,
       playground: {
         settings: {
-          "request.credentials": "include",
+          'request.credentials': 'include',
         },
       },
       context: ({ req, res }) => ({ req, res }),
