@@ -30,6 +30,7 @@ export class GqlAuthGuard implements CanActivate, OnModuleInit {
     const token = req.cookies?.Authentication || req.headers?.authorization?.split(' ')[1];
 
     if (!token) {
+      this.logger.error('Token bulunamadi!')
       return false;
     }
 
