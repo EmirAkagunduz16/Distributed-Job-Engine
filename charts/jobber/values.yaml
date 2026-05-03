@@ -1,9 +1,18 @@
 global:
   imagePullPolicy: Always
 
+ingress:
+  alb: false
+
+persistence:
+  ebs: false
+
 pulsar:
   namespace: pulsar
   namespaceCreate: true
+  components:
+    proxy: false
+    pulsar_metadata: true
   zookeeper:
     replicaCount: 1
     podMonitor:
@@ -20,7 +29,6 @@ pulsar:
     podMonitor:
       enabled: false
   proxy:
-    replicaCount: 1
     podMonitor:
       enabled: false
   kube-prometheus-stack:
@@ -33,8 +41,6 @@ pulsar:
       enabled: false
     prometheus:
       enabled: false
-  components:
-    pulsar_metadata: true
 
 postgresql:
   namespaceOverride: postgresql

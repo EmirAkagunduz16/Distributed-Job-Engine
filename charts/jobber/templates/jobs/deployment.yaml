@@ -47,6 +47,8 @@ spec:
               value: "0.0.0.0:{{ .Values.jobs.port.grpc }}"
             - name: DATABASE_URL
               value: postgresql://postgres:postgres@{{ .Release.Name }}-postgresql.postgresql.svc.cluster.local:5432/jobs
+            - name: JWT_SECRET
+              value: {{ .Values.auth.jwt.secret | quote }}
       volumes:
         - name: uploads-volume
           persistentVolumeClaim:

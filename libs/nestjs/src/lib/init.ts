@@ -5,6 +5,10 @@ import { ConfigService } from '@nestjs/config';
 
 export async function init(app: INestApplication, globalPrefix = 'api') {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+  app.enableCors({
+    origin: true, // Geliştirme ortamı için tüm originlere izin verebilirsin
+    credentials: true,
+  });
   app.setGlobalPrefix(globalPrefix);
   app.useLogger(app.get(Logger));
   app.use(cookieParser());
