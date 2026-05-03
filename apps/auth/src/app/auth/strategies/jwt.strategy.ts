@@ -9,8 +9,21 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(configService: ConfigService) {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([
-        ExtractJwt.fromAuthHeaderAsBearerToken(),
-        (request: any) => request.cookies?.Authentication || request.token,
+        (request: any) => {
+          // 1. gRPC üzerinden gelen ham token (Jobs servisinden gelen istekler)
+          if (request?.token) {
+            return request.token;
+          }
+          // 2. HTTP Çerezinden (Cookie) gelen token
+          if (request?.cookies?.Authentication) {
+            return request.cookies.Authentication;
+          }
+          // 3. HTTP Headers'dan (Bearer) gelen token (Çökmemesi için güvenli kontrol)
+          if (request?.headers?.authorization) {
+            return request.headers.authorization.split(' ')[1];
+          }
+          return null;
+        }
       ]),
       secretOrKey: configService.getOrThrow('JWT_SECRET'),
     });
